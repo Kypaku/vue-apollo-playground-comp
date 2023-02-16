@@ -1,14 +1,19 @@
 <template>
     <div class="apollo-playground">
-        <label for="query">Query:</label>
-        <textarea id="query" v-model="query" placeholder="Enter your GraphQL query here"></textarea>
-        <label for="variables">Variables:</label>
-        <textarea id="variables" v-model="variables" placeholder="Enter variables as a JSON object"></textarea>
-        <span>Click the buttons and see the console</span>
-        <div class="buttons">
-            <button @click="sendQuery">Query</button>
-            <button @click="sendMutation">Mutate</button>
-        </div>
+        <button class="toggle" @click="isOpen = !isOpen">{{ isOpen ? 'Hide' : 'Show' }} Apollo PlayGround</button>
+        <transition name="fade">
+            <div class="panel" v-if="isOpen">
+                <label for="query">Query:</label>
+                <textarea id="query" v-model="query" placeholder="Enter your GraphQL query here"></textarea>
+                <label for="variables">Variables:</label>
+                <textarea id="variables" v-model="variables" placeholder="Enter variables as a JSON object"></textarea>
+                <span>Click the buttons and see the console</span>
+                <div class="buttons">
+                    <button @click="sendQuery">Query</button>
+                    <button @click="sendMutation">Mutate</button>
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -28,6 +33,7 @@
         },
         data() {
             return {
+                isOpen: false,
                 variables: "",
                 query: "",
 
@@ -88,20 +94,43 @@ textarea {
 .buttons {
     display: flex;
     gap: 8px;
+    button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        background-color: #4caf50;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #3e8e41;
+    }
 }
 
-button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    background-color: #4caf50;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+.toggle {
+  padding: 8px 16px;
+  border: none;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
 }
 
-button:hover {
-    background-color: #3e8e41;
+.panel {
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ccc;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
