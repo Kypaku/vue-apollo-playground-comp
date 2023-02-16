@@ -20,5 +20,6 @@ Use the component in your template:
 ```
 
 Available props:
+
 apolloClient: Your apollo client. The field is required.
 
