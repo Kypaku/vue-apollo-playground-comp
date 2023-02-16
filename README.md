@@ -1,13 +1,13 @@
 # vue-apollo-playground-comp
 A simple playground for Apollo Client
 
-#Vue Apollo Playground Component
+# Vue Apollo Playground Component
 A simple Vue component for testing GraphQL queries and mutations with Apollo Client.
 
-#Installation
+# Installation
 To use this component in your Vue project, install it via npm:
 
-#Usage
+# Usage
 ```
 import { ApolloPlayground } from './destination-folder';
 ```
